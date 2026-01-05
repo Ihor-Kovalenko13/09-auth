@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
-
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -14,19 +14,19 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'NoteHub',
-  description: 'NoteHub is a simple and efficient application for managing notes.',
+  title: 'Welcome to NoteHub',
+  description: 'NoteHub is a simple and efficient application',
   openGraph: {
-    title: 'NoteHub',
+    title: 'Welcome to NoteHub',
     description:
-      'NoteHub is a simple and efficient application for managing personal notes.',
-    url: 'https://08-zustand-seven-xi.vercel.app/',
+      'NoteHub is a simple and efficient application designed for managing personal notes.',
+    url: `https://08-zustand-seven-xi.vercel.app/`,
     images: [
       {
-        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        url: 'https://ac.goit.global/fullstack/react/og-meta.jpg',
         width: 1200,
         height: 630,
-        alt: 'NoteHub',
+        alt: `NoteHub`,
       },
     ],
   },
@@ -35,18 +35,20 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   modal,
-}: {
+}: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={roboto.variable}>
+      <body className={`${roboto.variable}`}>
         <TanStackProvider>
-          <Header />
-          {children}
-          {modal}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {children}
+            {modal}
+            <Footer />
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>
