@@ -16,7 +16,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   );
 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {

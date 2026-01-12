@@ -26,8 +26,6 @@ export interface registerRequest {
   password: string;
 }
 
-type Tags = string[];
-
 export async function fetchNotes({
   search,
   page,
